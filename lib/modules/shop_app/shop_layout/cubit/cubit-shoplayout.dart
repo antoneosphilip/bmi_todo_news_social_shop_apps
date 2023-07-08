@@ -418,139 +418,15 @@ print(cartgetmodel2?.data?.cartItems![0].product?.name);
       emit(deletequantityerror());
     });
   }
-// FutureBuilder run(){
-//
-//   return new FutureBuilder<SharedPreferences>(
-//     future: SharedPreferences.getInstance(),
-//     builder:
-//         (BuildContext context, AsyncSnapshot<SharedPreferences> snapshot) {
-//       switch (snapshot.connectionState) {
-//         case ConnectionState.none:
-//         case ConnectionState.waiting:
-//           return new CircularProgressIndicator();
-//         default:
-//           if (!snapshot.hasError) {
-//       ("Return a welcome screen");
-//       return snapshot.data?.getBool("welcome") != null
-//       ? new Text("hh")
-//           : new CircularProgressIndicator();
-//       } else {
-//       return new Text('${ snapshot.error}');
-//       }
-//     }
-//     },
-//   );
-//
-// }
-//   void createorder(){
-//     Diohelper2.putdata(
-//       url: order,
-//       data: {
-//
-//
-//         "intent": "CAPTURE",
-//         "purchase_units": [
-//           {
-//             "items": [
-//               {
-//                 "name": "T-Shirt",
-//                 "description": "Green XL",
-//                 "quantity": "1",
-//                 "unit_amount": {
-//                   "currency_code": "USD",
-//                   "value": "200.00"
-//                 }
-//               }
-//             ],
-//             "amount": {
-//               "currency_code": "USD",
-//               "value": "200.00",
-//               "breakdown": {
-//                 "item_total": {
-//                   "currency_code": "USD",
-//                   "value": "200.00"
-//                 }
-//               }
-//             }
-//           }
-//         ],
-//         "application_context": {
-//           "return_url": "https://example.com/return",
-//           "cancel_url": "https://example.com/cancel"
-//         }
-//
-//       },
-//       token: token,
-//     )?.then((value) {
-//       print(value?.statusCode);
-//     });
-//
-//
-//   }
-//   List<paypalmodel> paypa=[];
-//
-//   void paypal({required context,index}){
-//     paypalmodel pay=paypalmodel(
-//       name: cartgetmodel2!.data!.cartItems![index].product!.name,
-//       quantity:( pro[index]),
-//       currency: "us",
-//       price: pricee[index],
-//
-//     );
-//     paypa.add(pay);
-//     print("kkkkkkkkkkkk");
-//     print(paypa[0].price);
-//
-//
-//   }
-//   void map(Map params){
-//
-//
-//   }
-  Map<String, dynamic> dynamicMapToString(Map<dynamic, dynamic> data) {
-    List<dynamic> _convertList(List<dynamic> src) {
-      List<dynamic> dst = [];
-      for (int i = 0; i < src.length; ++i) {
-        if (src[i] is Map<dynamic, dynamic>) {
-          dst.add(dynamicMapToString(src[i]));
-        } else if (src[i] is List<dynamic>) {
-          dst.add(_convertList(src[i]));
-        } else {
-          dst.add(src[i]);
-        }
-      }
-      return dst;
-    }
 
-    Map<String, dynamic> retval = {};
-    for (dynamic key in data.keys) {
-      if (data[key] is Map<dynamic, dynamic>) {
-        retval[key.toString()] = dynamicMapToString(data[key]);
-      } else if (data[key] is List<dynamic>) {
-        retval[key.toString()] = _convertList(data[key]);
-      } else {
-        retval[key.toString()] = data[key];
-      }
-    }
+  void orderindatabase(Map<String,dynamic> data){
 
-    return retval;
-
-  }
-  //{error: false,
-  // message: Success,
-  // data: {id: PAYID-MSUZA4Y19C38913BR512893D, intent: sale, state: approved, cart: 48S43735DL284183H, payer: {payment_method: paypal, status: VERIFIED, payer_info:
-  // {email: sb-cf19u26547196@personal.example.com, first_name: John, last_name: Doe, payer_id: P6UKJW5XLLPYW,
-  // shipping_address: {recipient_name: John Doe, line1: 1 Main St, city: San Jose, state: CA, postal_code: 95131, country_code: US}, country_code: US}},
-  // transactions: [{amount: {total: 225.00, currency: USD, details: {subtotal: 225.00, shipping: 0.00, insurance: 0.00, handling_fee: 0.00, shipping_discount: 0.00, discount: 0.00}}, payee: {merchant_id: ABN8E6UTUYNU2, email: sb-mxppt26330664@business.example.com},
-  // description: The payment transaction description., item_list: {items: [{name: Front Patch Pocket Long Sleeve Shirt - Dark Olive, price: 225.00,
-  // currency: USD, tax: 0.00, quantity: 1, image_url: }],
-  // shipping_address: {recipient_name: John Doe,
-  // line1: 1 Main St, city: San Jose, state: CA, postal_code:
-  void orderindatabase(Map<String,dynamic> a){
-
-    FirebaseFirestore.instance.collection('orderdetails').add(a).then((value) {
-
+    FirebaseFirestore.instance.collection('orderdetails').add(data).then((value) {
+emit(orderindatabasesuccess());
       print(value);
+    }).catchError((error){
+      emit(orderindatabaseerror());
+
     });
 
   }

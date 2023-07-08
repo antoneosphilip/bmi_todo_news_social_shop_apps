@@ -38,6 +38,10 @@ class cartscreen extends StatelessWidget {
               toast(text: shoplayoutcubit.get(context).cmodel!.message!, choose: toastchoose.success);
 
             }
+            if(state is orderindatabasesuccess){
+              toast(text: "Be waiting for the order and thank you for contacting us", choose: toastchoose.success);
+
+            }
           },
           builder: (context,state){
             return  Scaffold(
@@ -179,7 +183,23 @@ class cartscreen extends StatelessWidget {
                                           //    shoplayoutcubit.get(context).orderindatabase(params);
                                               ;
                                           //           Map<String, dynamic>.from(snapshot.params as Map);
-                                          shoplayoutcubit.get(context).orderindatabase(json.encode(params) as Map<String, dynamic>);
+                                          Map<String, dynamic> convertMap(Map<dynamic, dynamic> map) {
+                                            map.forEach((key, value) {
+                                              if (value is Map) {
+                                                // it's a map, process it
+                                                value = convertMap(value);
+                                              }
+                                            });
+                                            // use .from to ensure the keys are Strings
+                                            return Map<String, dynamic>.from(map);
+                                            // more explicit alternative way:
+                                            // return Map.fromEntries(map.entries.map((entry) => MapEntry(entry.key.toString(), entry.value)));
+                                          }
+                                          Map<String, dynamic> result = convertMap(params);
+// example nested map with dynamic value
+// convert the example map
+                                      shoplayoutcubit.get(context).orderindatabase(result);
+                                          print(result);
                                         },
                                         onError: (error) {
                                           print("onError: $error");

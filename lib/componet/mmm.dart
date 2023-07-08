@@ -4,6 +4,7 @@ import 'dart:ffi';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:path/path.dart';
 import 'package:async/async.dart';
@@ -375,15 +376,15 @@ void toast({
   required toastchoose choose,
 }){
 
-  // Fluttertoast.showToast(
-  //     msg: text,
-  //     toastLength: Toast.LENGTH_LONG,
-  //     gravity: ToastGravity.BOTTOM,
-  //     timeInSecForIosWeb: 5,
-  //     backgroundColor: colorchosse(choose: choose),
-  //     textColor: Colors.white,
-  //     fontSize: 16.0
-  // );
+  Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 5,
+      backgroundColor: colorchosse(choose: choose),
+      textColor: Colors.white,
+      fontSize: 16.0
+  );
 }
 enum toastchoose{warning,success,error}
 Color? colorchosse({required toastchoose choose}){

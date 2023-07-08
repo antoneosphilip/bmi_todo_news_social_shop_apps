@@ -61,6 +61,7 @@ dependencies:
   flutter_local_notifications: ^14.1.1
   flutter_paypal_checkout: ^1.0.1
   conditional_builder_null_safety: ^0.0.6
+  fluttertoast: ^8.2.2
 
 
 

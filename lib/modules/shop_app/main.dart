@@ -164,7 +164,7 @@ class MyApp extends StatelessWidget
             theme:lighttheme ,
             darkTheme:darktheme ,
             themeMode: Appcubit.get(context).light? ThemeMode.dark : ThemeMode.light,
-            home: socialapploginscreen()!,
+            home: widget!,
 
 
           );

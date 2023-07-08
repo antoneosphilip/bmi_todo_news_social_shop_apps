@@ -21,7 +21,7 @@ class faveoritesscreen extends StatelessWidget {
       (
         builder: (context,state){
           return ConditionalBuilder(
-            condition: state is! faveoritemodelloading,
+            condition: shoplayoutcubit.get(context).model!=null&&shoplayoutcubit.get(context).modelfaveorite!=null,
             builder:(context)=> ListView.separated(
               itemBuilder: (context,index)=>buildlistitem(shoplayoutcubit.get(context).modelfaveorite!.data!.data![index]!.product,context,index,isdisc: true),
               separatorBuilder: (context,index)=>SizedBox(height: 20,),

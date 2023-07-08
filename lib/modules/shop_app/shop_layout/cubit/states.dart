@@ -65,6 +65,9 @@ class deleteindexsucccess extends shoplayoutstates{}
 
 class deletequantityerror extends shoplayoutstates{}
 class plusnumber extends shoplayoutstates{}
+class orderindatabasesuccess extends shoplayoutstates{}
+class orderindatabaseerror extends shoplayoutstates{}
+
 
 
 
