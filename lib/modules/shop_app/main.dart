@@ -8,6 +8,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopapp/Network/login/login.dart';
 import 'package:shopapp/Network/remote/diohelper.dart';
 import 'package:shopapp/componet/mmm.dart';
@@ -16,6 +17,7 @@ import 'package:shopapp/cubit/states.dart';
 import 'package:shopapp/layout/newsapp/cubit.dart';
 import 'package:shopapp/layout/newsapp/newsapp_layout.dart';
 import 'package:shopapp/layout/social-layout/social-layout.dart';
+import 'package:shopapp/modules/paypal-screen/paypal-screen.dart';
 import 'package:shopapp/modules/shop_app/loginshopscreen/loginshop_screen.dart';
 import 'package:shopapp/modules/shop_app/on_boardingapp/on_boardingapp.dart';
 import 'package:shopapp/modules/shop_app/shop_layout/cubit/cubit-shoplayout.dart';
@@ -25,6 +27,7 @@ import 'package:shopapp/shared/styles/thems.dart';
 
 import '../../Network/login/login.dart';
 import '../../layout/social-layout/social-cubit/social-cubit.dart';
+import '../cart-screen/cart-screen.dart';
 import '../social-app/Registershopscreen/cubit-Register/cubit.dart';
 import '../social-app/social-logins-creen/cubit/cubit.dart';
 
@@ -76,7 +79,7 @@ void main()async {
 
   });
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-   token2=(await FirebaseMessaging.instance.getToken())!;
+  token2=(await FirebaseMessaging.instance.getToken())!;
   // final user = await FirebaseAuth.instance.currentUser!;
   // final idToken = await user.getIdToken();
   // print(idToken);
@@ -94,26 +97,27 @@ void main()async {
     bool isDark=await shared.getdata(key:'light');
     String islogin=shared.getdata(key: "token");
     uId='';
-     uId=shared.getdata(key: 'uId');
-    if(uId!=null){
-      widget =sociallayoutscreen();
-    }else{
-
-      widget=socialapploginscreen();
-    }
-  //  token=shared.getdata(key: 'token') ;
-   // print(token);
-    // if(board!=null){
-    //   if(islogin!=null) widget=shoplayout();
-    //
-    // else{
-    //     widget=loginshopscreen();
-    //   }
+    uId=shared.getdata(key: 'uId');
+    // if(uId!=null){
+    //   widget =sociallayoutscreen();
     // }else{
-    //   widget=onboardingscreen();
+    //
+    //   widget=socialapploginscreen();
     // }
 
-    runApp(MyApp(board: board,isDark: isDark,widget: widget,));
+    token=shared.getdata(key: 'token') ;
+    print(token);
+    if(board!=null){
+      if(islogin!=null) widget=shoplayout();
+
+      else{
+        widget=loginshopscreen();
+      }
+    }else{
+      widget=onboardingscreen();
+    }
+
+    runApp(MyApp(board: board,isDark: isDark,widget: widget));
   }, (error, stack) {print(error);
   }
   );
@@ -123,9 +127,9 @@ void main()async {
 
 class MyApp extends StatelessWidget
 {
- final bool ?isDark;
- final bool ?board;
-final Widget? widget;
+  final bool ?isDark;
+  final bool ?board;
+  final Widget? widget;
   MyApp({
     this.board,
     this.isDark,
@@ -134,6 +138,7 @@ final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
+
 
     return  MultiBlocProvider(
       providers: [
@@ -146,7 +151,7 @@ final Widget? widget;
 
 
         ),
-      //  BlocProvider(create: (context)=>socialappcubit()..getuserdata()),
+        //  BlocProvider(create: (context)=>socialappcubit()..getuserdata()),
 
 
 
@@ -159,7 +164,7 @@ final Widget? widget;
             theme:lighttheme ,
             darkTheme:darktheme ,
             themeMode: Appcubit.get(context).light? ThemeMode.dark : ThemeMode.light,
-            home: widget!,
+            home: socialapploginscreen()!,
 
 
           );

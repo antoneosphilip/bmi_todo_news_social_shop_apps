@@ -38,9 +38,33 @@ class updateprofilemodelerror extends shoplayoutstates{}
 class shopsearchloadingstateshop extends shoplayoutstates{}
 class shopsearchsucessstateshop extends shoplayoutstates{}
 class shopsearcherroestateshop extends shoplayoutstates{}
+class shopshowmorestateshop extends shoplayoutstates{}
+class shopaddstateshop extends shoplayoutstates{}
+class shopremovetateshop extends shoplayoutstates{}
+
+class shopcartsucessstateshop extends shoplayoutstates{}
+class shopcarterroestateshop extends shoplayoutstates{}
+
+class shopcartgetsucessstateshop extends shoplayoutstates{}
+class shopcartgeterroestateshop extends shoplayoutstates{}
+class cartsendemodelloading extends shoplayoutstates{}
+
+class cartemodelloading extends shoplayoutstates{}
 
 
+class change extends shoplayoutstates{}
+class setquantitysucccess extends shoplayoutstates{}
+class setquantityerror extends shoplayoutstates{}
 
+class getquantitysucccess extends shoplayoutstates{}
+class getquantityerror extends shoplayoutstates{}
+class deletequantitysucccess extends shoplayoutstates{}
+class deleteloading extends shoplayoutstates{}
+
+class deleteindexsucccess extends shoplayoutstates{}
+
+class deletequantityerror extends shoplayoutstates{}
+class plusnumber extends shoplayoutstates{}
 
 
 

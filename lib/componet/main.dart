@@ -47,7 +47,6 @@ class MyApp extends StatelessWidget
               primarySwatch: Colors.deepOrange,
               scaffoldBackgroundColor: Colors.white,
               appBarTheme: AppBarTheme(
-                backwardsCompatibility: false,
                 systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Colors.white,
                 ),
@@ -82,7 +81,6 @@ class MyApp extends StatelessWidget
                 primarySwatch: Colors.deepOrange,
                 scaffoldBackgroundColor: Colors.black,
                 appBarTheme: AppBarTheme(
-                  backwardsCompatibility: false,
                   systemOverlayStyle: SystemUiOverlayStyle(
                     statusBarColor: Colors.black,
                   ),

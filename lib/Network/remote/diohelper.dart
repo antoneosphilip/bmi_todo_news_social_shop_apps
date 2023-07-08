@@ -46,8 +46,7 @@ dio?.options.headers={
    dio?.options.headers={
      'Content-Type':'application/json',
  'lang':lang,
-   'Authorization':'key=AAAAK0-A6Ok:APA91bEY56LfSgzJyyJeENdbkZus0OQxD6t1J5U0CVZAuvI7wXV8rVR7QWWBJh5klt3B-FNtJd0ubaod-HcphIs7cv9dGfbtLs83-f0TXW8XuCatVAUSPfRAhCBC_BRdZrb6QGSQSVbS',
-
+   'Authorization':token??''
    };
    return  dio?.post(url,queryParameters: query,data: data);
  }

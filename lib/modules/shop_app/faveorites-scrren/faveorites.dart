@@ -1,5 +1,5 @@
 
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,13 +20,13 @@ class faveoritesscreen extends StatelessWidget {
     return  BlocConsumer<shoplayoutcubit,shoplayoutstates>
       (
         builder: (context,state){
-         return ConditionalBuilder(
-              condition: state is! faveoritemodelloading,
-              builder:(context)=> ListView.separated(
-                itemBuilder: (context,index)=>buildlistitem(shoplayoutcubit.get(context).modelfaveorite!.data!.data![index]!.product,context,index,isdisc: true),
-                separatorBuilder: (context,index)=>SizedBox(height: 20,),
-                itemCount:shoplayoutcubit.get(context).modelfaveorite!.data!.data!.length,
-              ),
+          return ConditionalBuilder(
+            condition: state is! faveoritemodelloading,
+            builder:(context)=> ListView.separated(
+              itemBuilder: (context,index)=>buildlistitem(shoplayoutcubit.get(context).modelfaveorite!.data!.data![index]!.product,context,index,isdisc: true),
+              separatorBuilder: (context,index)=>SizedBox(height: 20,),
+              itemCount:shoplayoutcubit.get(context).modelfaveorite!.data!.data!.length,
+            ),
             fallback: (context)=>Center(child: CircularProgressIndicator()),
           );
 

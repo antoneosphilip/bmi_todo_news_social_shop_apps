@@ -5,7 +5,6 @@ ThemeData lighttheme=ThemeData(
   primarySwatch: Colors.blue,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: AppBarTheme(
-    backwardsCompatibility: false,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ),
@@ -47,7 +46,6 @@ ThemeData darktheme=ThemeData(
   primarySwatch: Colors.blue,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: AppBarTheme(
-    backwardsCompatibility: false,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ),
