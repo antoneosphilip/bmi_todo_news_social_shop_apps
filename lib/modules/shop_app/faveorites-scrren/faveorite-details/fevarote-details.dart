@@ -14,14 +14,17 @@ import '../../shop_layout/cubit/states.dart';
 
 class faveroitedetails extends StatelessWidget {
   faveoritesmodel model;
+
   int idex ;
 
   faveroitedetails(this.model, this.idex);
 
   @override
   Widget build(BuildContext context) {
-    shoplayoutcubit.get(context).price=model?.data?.data![idex].product!.price;
+    shoplayoutcubit.get(context).bottom![shoplayoutcubit.get(context).modelfaveorite!.data!.data![idex].product!.id]!=true;
+    shoplayoutcubit.get(context).price=model?.data?.data![idex].product!.price?.toInt();
     bool x=true;
+
     shoplayoutcubit.get(context).pm=1;
 
 
@@ -198,13 +201,11 @@ class faveroitedetails extends StatelessWidget {
                             //   shoplayoutcubit.get(context).price=0;
 
                           }
-                          // if(shoplayoutcubit.get(context).t==0){
-                          //
-                          //   shoplayoutcubit.addcart(id: cartgetmodel2?.data?.cartItems![index].product?.id, idex: index);
-                          //
-                          // }
+
 
                           shoplayoutcubit.get(context).getqu(index: model.data?.data![idex].product!.id);
+                          if( shoplayoutcubit.get(context).bottom![model!.data!.data![idex].product!.id]==true)
+                          shoplayoutcubit.get(context).changek();
                           //    cartscreen(idex);
                        //   shoplayoutcubit.get(context).paypal(context: context,index: idex);
 
@@ -213,12 +214,12 @@ class faveroitedetails extends StatelessWidget {
                           shoplayoutcubit.get(context).pm=0;
                         },
                         child: Text(
-                            "Add to cart" ,
+                            shoplayoutcubit.get(context).bottom![model!.data!.data![idex].product!.id]!?"Remove from cart":"Add to cart" ,
                             style: TextStyle(
-                              color: Colors.white,
+                              color:  shoplayoutcubit.get(context).bottom![model!.data!.data![idex].product!.id]!?Colors.black: Colors.white,
 
 
-                            )),
+                            )) ,
 
                         minWidth: double.infinity,
                       ),

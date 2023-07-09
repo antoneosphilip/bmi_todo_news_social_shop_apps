@@ -63,9 +63,9 @@ class datalist {
 
 class Products {
   int ?id;
-  dynamic? price;
-  dynamic ?oldPrice;
-  dynamic ?discount;
+  num? price;
+  num ?oldPrice;
+  num ?discount;
   String ?image;
   String ?name;
   String ?description;
@@ -73,7 +73,7 @@ class Products {
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    price = json['price'];
+     price = json['price'];
     oldPrice = json['old_price'];
     discount = json['discount'];
     image = json['image'];

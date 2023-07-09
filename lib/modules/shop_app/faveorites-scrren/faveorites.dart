@@ -27,7 +27,7 @@ class faveoritesscreen extends StatelessWidget {
               separatorBuilder: (context,index)=>SizedBox(height: 20,),
               itemCount:shoplayoutcubit.get(context).modelfaveorite!.data!.data!.length,
             ),
-            fallback: (context)=>Center(child: CircularProgressIndicator()),
+            fallback: (context)=>Center(child: CircularProgressIndicator(color: Colors.deepOrange,)),
           );
 
         },

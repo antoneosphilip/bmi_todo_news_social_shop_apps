@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -42,6 +43,8 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
   List<IconData>?iconn;
   IconData ?ic;
   Map<int,bool>? faveorite={};
+  Map<int,bool>? bottom={};
+
   int pm=1;
 
 
@@ -71,6 +74,9 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
         faveorite?.addAll({
           element.id!:element.in_favorites!,
         });
+        bottom?.addAll({
+          element.id!:element.in_cart!,
+        });
       });
 
       emit(shopsuccess());
@@ -97,6 +103,7 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
   favmodel? fav;
   void changefav(int productid){
     faveorite![productid]=!faveorite![productid]!;
+    print(productid);
     emit(shopfavsuccess1());
     print(faveorite![productid]);
 
@@ -133,6 +140,7 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
       token: token,
     )!.then((value) {
       modelfaveorite=faveoritesmodel.fromjson(value?.data);
+
       print('token is');
       print(token.toString());
       emit(faveoritemodelsucess());
@@ -221,7 +229,7 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
   void add({required index}){
 
     pm++;
-    price=modelfaveorite?.data?.data![index].product!.price as int?;
+    price=modelfaveorite?.data?.data![index].product!.price!.round()!;
 
     price=price!*pm!;
 
@@ -238,8 +246,8 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
   void remove({required index}){
     if(pm>0){
       pm=pm-1;
-      price=(price!-(modelfaveorite?.data?.data![index].product!.price!)).toInt();
-      y=(y-modelfaveorite?.data?.data![index].product!.price!).toInt();
+      price=(price!-(modelfaveorite?.data?.data![index].product!.price!)!.toDouble()).toInt();
+      y=(y-(modelfaveorite?.data?.data![index].product!.price!)!.toDouble()).toInt();
       print(y);
       print(price);
       emit(shopremovetateshop());
@@ -250,6 +258,7 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
   }
   cartmodel? cmodel;
   void addcart({required id,required idex}){
+bottom![id]=!bottom![id]!;
     emit(cartsendemodelloading());
     Diohelper.putdata(
       url: cart,
@@ -260,6 +269,8 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
       },
       token: token,
     )?.then((value) {
+      print("object");
+
       print("u=iddddd");
       print(id);
       cmodel= cartmodel.fromJson(value?.data);
@@ -267,6 +278,7 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
       cmodel?.data?.product?.id;
 print(cmodel?.message);
       getcartmodel();
+
 
 
       emit(shopcartsucessstateshop());
@@ -403,20 +415,6 @@ print(cartgetmodel2?.data?.cartItems![0].product?.name);
     // pro.removeAt(idex);
     // pricee.removeAt(idex);
     print(pricee);
-    FirebaseFirestore.instance.collection('product').doc('${index.toString()}').delete().then((value) {
-      print("okkkk");
-
-      // emit(deleteindexsucccess());
-      print(pricee);
-
-
-      pricee.removeAt(idex);
-      pro.removeAt(idex);
-      emit(deletequantitysucccess());
-
-    }).catchError((error){
-      emit(deletequantityerror());
-    });
   }
 
   void orderindatabase(Map<String,dynamic> data){
@@ -430,5 +428,51 @@ emit(orderindatabasesuccess());
     });
 
   }
+  bool k=false;
+  void changek(){
+    k=true;
+    print(k);
+    emit(changk());
+  }
+  void deletecart({required id,required idex}){
+    bottom![id]=!bottom![id]!;
+    emit(cartdeleteemodelloading());
+    Diohelper.putdata(
+      url: cart,
+
+      data: {
+        'product_id':id,
+
+      },
+      token: token,
+    )?.then((value) {
+
+      FirebaseFirestore.instance.collection('product').doc('${idex.toString()}').delete().then((value) {
+        print("okkkk");
+
+        // emit(deleteindexsucccess());
+        print(pricee);
+
+
+        pricee.removeAt(idex);
+        pro.removeAt(idex);
+        emit(deletequantitysucccess());
+
+      }).catchError((error){
+        emit(deletequantityerror());
+      });
+
+      getcartmodel();
+
+
+
+      emit(shopcartdeletesucessstateshop());
+
+    }).catchError((error){
+      print(error.toString());
+      emit(shopcartdeleterroestateshop());
+    });
+  }
+
 }
 

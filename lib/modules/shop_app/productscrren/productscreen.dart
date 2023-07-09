@@ -33,7 +33,7 @@ if(state.model.status==false){
         return ConditionalBuilder(
           condition: shoplayoutcubit.get(context).model!=null&&shoplayoutcubit.get(context).modelcategory!=null,
           builder:(context)=> productbuilder(shoplayoutcubit.get(context).model,context),
-          fallback:(context)=> Center(child: CircularProgressIndicator()),
+          fallback:(context)=> Center(child: CircularProgressIndicator(color: Colors.deepOrange,)),
         );
       },
     );

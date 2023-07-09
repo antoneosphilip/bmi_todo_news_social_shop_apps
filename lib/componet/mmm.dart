@@ -334,7 +334,6 @@ Widget defaulttext(
 
 }
     )=> TextFormField(
-
   onFieldSubmitted: (value) {
     onsubmited!(value);
   },
@@ -342,19 +341,22 @@ Widget defaulttext(
   showCursor: true,
 
   controller: controller,
-
   keyboardType: type,
       validator: (value) {
     validate;
     },
 
   obscureText: isbass,
-  decoration:  InputDecoration(
-    labelText: text,
-    prefixIcon: Icon(
-prefix,
-    ),
 
+  decoration:  InputDecoration(
+
+    labelText: text,
+    labelStyle: TextStyle(color: Colors.black),
+    prefixIcon: Icon(
+
+prefix,
+      color: Colors.black,
+    ),
     suffixIcon: IconButton(
         onPressed:onpressed,
 
@@ -362,10 +364,22 @@ prefix,
 sufficon
       ),
     ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(25.0),
 
+  borderSide: BorderSide(
+    color: Colors.deepOrange,
+    width: 2
+  ),
+),
 
-
-    border: OutlineInputBorder(),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(25.0),
+      borderSide: BorderSide(
+        color: Colors.deepOrange,
+        width: 2.0,
+      ),
+    ),
 
   ),
 
@@ -378,7 +392,7 @@ void toast({
 
   Fluttertoast.showToast(
       msg: text,
-      toastLength: Toast.LENGTH_LONG,
+      toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 5,
       backgroundColor: colorchosse(choose: choose),

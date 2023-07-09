@@ -37,6 +37,7 @@ int i=1;
               controller: seachcontroller,
               type: TextInputType.text,
               prefix: Icons.search,
+
               onsubmited: (String text){
                 searchcubit.get(context).search(text);
               },

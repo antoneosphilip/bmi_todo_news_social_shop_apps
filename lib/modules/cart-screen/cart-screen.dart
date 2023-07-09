@@ -31,7 +31,7 @@ class cartscreen extends StatelessWidget {
       builder: (BuildContext context) {
 
         shoplayoutcubit.get(context).getcartmodel();
-
+shoplayoutcubit.get(context).k=false;
         return BlocConsumer<shoplayoutcubit,shoplayoutstates>(
           listener: (context,state){
             if(state is shopcartsucessstateshop){
@@ -48,7 +48,7 @@ class cartscreen extends StatelessWidget {
               appBar: AppBar(title: Text('my cart'),),
               body: ConditionalBuilder(
 
-                condition: shoplayoutcubit.get(context).cartgetmodel2!=null&&state is! shopcartsucessstateshop&& state is!deletequantitysucccess,
+                condition: shoplayoutcubit.get(context).cartgetmodel2!=null&&state is! shopcartdeletesucessstateshop&& state is!deletequantitysucccess,
                 builder: (context)=>Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -302,8 +302,9 @@ class cartscreen extends StatelessWidget {
         ),
         IconButton(onPressed: (){
 
-          shoplayoutcubit.get(context).addcart(id: mode.data?.cartItems![index].product?.id,idex: index);
-          shoplayoutcubit.get(context).deletequantity(index: mode.data?.cartItems![index].product?.id ,idex: index);
+          // shoplayoutcubit.get(context).addcart(id: mode.data?.cartItems![index].product?.id,idex: index);
+          // shoplayoutcubit.get(context).deletequantity(index: mode.data?.cartItems![index].product?.id ,idex: index);
+          shoplayoutcubit.get(context).deletecart(id:  mode.data?.cartItems![index].product?.id, idex: index);
           shoplayoutcubit.get(context).t=(shoplayoutcubit.get(context).t-shoplayoutcubit.get(context).pricee[index]);
 
 

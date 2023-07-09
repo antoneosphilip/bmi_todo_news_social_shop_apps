@@ -27,11 +27,23 @@ class shoplayout extends StatelessWidget {
               }, icon: Icon(Icons.search)),
               IconButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>cartscreen(0)));
-              }, icon: Icon(Icons.shopping_cart)),
+              }, icon:
+              Stack(
+                children: [
+                  Icon(Icons.shopping_cart),
+                  if(shoplayoutcubit.get(context).k==true)
+                  CircleAvatar(
+                    radius: 5,
+                    backgroundColor: Colors.red,
+                  ),
+                ],
+              )),
             ],
           ),
           body: cubit.screens[cubit.currentindex],
           bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.deepOrange
+              ,
               onTap: (index){
                 cubit.changeborromnav(index);
               },
@@ -41,11 +53,14 @@ class shoplayout extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
                   label: "Home",
+                  backgroundColor: Colors.deepOrange,
+
 
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.apps),
                   label: "Categories",
+                  backgroundColor: Colors.deepOrange,
 
                 ),
                 BottomNavigationBarItem(
