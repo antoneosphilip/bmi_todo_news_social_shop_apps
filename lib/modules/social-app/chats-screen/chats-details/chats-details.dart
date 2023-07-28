@@ -115,11 +115,14 @@ var messagevontroller=TextEditingController();
                               );
                              // sociallayoutcubit.get(context).messagesend(to:token2);
                               sociallayoutcubit.sendFcmMessage(
+
                                   "from ${sociallayoutcubit.get(context).model?.name}",
                                   "${messagevontroller.text}",
                                 model2.tokenn,
                               );
                               messagevontroller.text='';
+                              print("token is");
+                              print(model2.tokenn);
 
                             }, child: Icon(Iconsax.send1,))
                           ],

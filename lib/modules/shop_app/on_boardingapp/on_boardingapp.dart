@@ -68,9 +68,10 @@ shared.savedata(key: "isboard", value: true).then((value) {
       appBar: AppBar(
         actions: [
          TextButton(
+
              onPressed: (){
                  push();
-         }, child: Text("SKIP")
+         }, child: Text("SKIP",style: TextStyle(color: Colors.deepOrange),)
 
           )
         ],
@@ -149,6 +150,7 @@ shared.savedata(key: "isboard", value: true).then((value) {
               ),
               Spacer(),
               FloatingActionButton(
+backgroundColor: Colors.deepOrange,
                 onPressed: (){
                 if(isboard){
  push();
@@ -162,7 +164,7 @@ shared.savedata(key: "isboard", value: true).then((value) {
                   );
                 }
 
-              },child: Icon(Icons.arrow_forward_ios),),
+              },child: Icon(Icons.arrow_forward_ios,color: Colors.white,),),
               SizedBox(height: 20,),
 
             ],

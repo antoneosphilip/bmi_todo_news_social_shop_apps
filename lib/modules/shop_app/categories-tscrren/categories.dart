@@ -1,4 +1,5 @@
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,10 +15,16 @@ class categoriesscreen extends StatelessWidget {
     return BlocConsumer<shoplayoutcubit,shoplayoutstates>
       (
         builder: (context,state){
-          return ListView.separated(
-              itemBuilder: (context,index)=>categoriesitems(shoplayoutcubit.get(context).modelcategory!.data!.data![index]),
-              separatorBuilder: (context,index)=>SizedBox(height: 10,),
-              itemCount: shoplayoutcubit.get(context).modelcategory!.data!.data!.length
+          return ConditionalBuilder(
+            condition: shoplayoutcubit.get(context).modelcategory!=null,
+            builder: (context)=>ListView.separated(
+                itemBuilder: (context,index)=>categoriesitems(shoplayoutcubit.get(context).modelcategory!.data!.data![index]),
+                separatorBuilder: (context,index)=>SizedBox(height: 10,),
+                itemCount: shoplayoutcubit.get(context).modelcategory!.data!.data!.length
+            ),
+            fallback: (context)=>Center(child: CircularProgressIndicator(
+              color: Colors.deepOrange,
+            )),
           );
 
     },

@@ -253,6 +253,7 @@ class Homescreen extends StatelessWidget {
  //if(sociallayoutcubit.get(context).commenttitle.length>=0)
  ConditionalBuilder(
    condition:sociallayoutcubit.get(context).comment.length>0 ,
+     //
      builder:(context)=>Text("${sociallayoutcubit.get(context).comment[index]!} comment"),
    fallback:(context)=>Text("0") ,
 

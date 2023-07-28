@@ -33,7 +33,7 @@ int i=1;
         children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: defaulttext(
+            child: defaulttext2(
               controller: seachcontroller,
               type: TextInputType.text,
               prefix: Icons.search,
@@ -54,13 +54,14 @@ int i=1;
 
           ),
           if(state is shopsearchloadingstate)
-            LinearProgressIndicator(),
+            LinearProgressIndicator(
+            ),
           SizedBox(height: 20,),
           if(state is shopsearchsuccessstate)
           Expanded(
-            child: ListView.separated(itemBuilder: (context,index)=>buildlistitem(searchcubit.get(context).Smodel!.data!.data![index]!,context,index,isdisc: false),
+            child: ListView.separated(itemBuilder: (context,index)=>buildlistitemsearch(searchcubit.get(context).Smodel!.data!.data![index]!,context,index,isdisc: false),
               separatorBuilder: (context,index)=>SizedBox(height: 10,),
-              itemCount:searchcubit.get(context).Smodel!.data!.data!.length,
+              itemCount:shoplayoutcubit.get(context).model!.data!.banners!.length,
             ),
           ),
 

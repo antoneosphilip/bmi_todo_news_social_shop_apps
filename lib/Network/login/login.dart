@@ -1,5 +1,5 @@
 const LOGIN ='login';
-String token='';
+dynamic token='';
 var token2='';
 
 String uId='';

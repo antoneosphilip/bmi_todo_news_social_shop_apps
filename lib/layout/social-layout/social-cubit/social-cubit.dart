@@ -311,7 +311,7 @@ class sociallayoutcubit extends Cubit<shoplayoutstates> {
           // if(sociallayoutcubit.get(context).commentposts[index]!='')
 
           event.docs.forEach((element) {
-              comment.add(element.data().length);
+            comment.add(element.data().length);
             print(element.data().toString());
             emit(shoplayoutconnebtlovetates());
           });
@@ -338,21 +338,22 @@ class sociallayoutcubit extends Cubit<shoplayoutstates> {
 
     );
   }
-void getlikes(){
-
-  FirebaseFirestore.instance.collection('posts').snapshots().listen((event) {
-
-    event.docs.forEach((element) {
+  void getlikes(){
 
 
-    });
-  },
+    FirebaseFirestore.instance.collection('posts').snapshots().listen((event) {
+
+      event.docs.forEach((element) {
 
 
-  );
+      });
+    },
 
 
-}
+    );
+
+
+  }
   void getusers() {
     users = [];
     if (users?.length == 0);
@@ -385,7 +386,7 @@ void getlikes(){
 
         })
 
-    .then((value) {
+        .then((value) {
       FirebaseFirestore.instance.collection('posts').snapshots().listen((event) {
         event.docs.forEach((element) {
           likepostsnumber=[];
@@ -518,9 +519,9 @@ void getlikes(){
 //
 //
 //       );
-    emit(shoplayoutcccctates());
+      emit(shoplayoutcccctates());
 
-    like = !like;
+      like = !like;
 
 
     }).catchError((error) {
@@ -553,7 +554,7 @@ void getlikes(){
   //  }
   List<String> commenttitle = [];
   List<chatmodel> messagelist = [];
-List<int> comment=[];
+  List<int> comment=[];
 
   void postcomment(String id, text) {
     commenttitle.add(text);
@@ -654,7 +655,7 @@ List<int> comment=[];
       var header = {
         "Content-Type": "application/json",
         "Authorization":
-        "key=your_server_key",
+        "key=AAAAK0-A6Ok:APA91bEY56LfSgzJyyJeENdbkZus0OQxD6t1J5U0CVZAuvI7wXV8rVR7QWWBJh5klt3B-FNtJd0ubaod-HcphIs7cv9dGfbtLs83-f0TXW8XuCatVAUSPfRAhCBC_BRdZrb6QGSQSVbS",
       };
       var request = {
         "notification": {
@@ -674,32 +675,32 @@ List<int> comment=[];
           data: {
             "to": "${to}",
 
+            "notification" : {
+              "body" : message,
+              "content_available" : true,
+              "priority" : "high",
+              "subtitle":"Elementary School",
+              "Title":title
+            },
+            "android": {
+              "priority" : "high",
+
               "notification" : {
                 "body" : message,
                 "content_available" : true,
                 "priority" : "high",
                 "subtitle":"Elementary School",
                 "Title":title
-              },
-              "android": {
-                "priority" : "high",
-
-                "notification" : {
-                  "body" : message,
-                  "content_available" : true,
-                  "priority" : "high",
-                  "subtitle":"Elementary School",
-                  "Title":title
-                }
-              },
-
-              "data" : {
-                "priority" : "high",
-                "sound":"app_sound.wav",
-                "content_available" : true,
-                "bodyText" : "New Announcement assigned",
-                "organization" :"Elementary school"
               }
+            },
+
+            "data" : {
+              "priority" : "high",
+              "sound":"app_sound.wav",
+              "content_available" : true,
+              "bodyText" : "New Announcement assigned",
+              "organization" :"Elementary school"
+            }
 
 
           })?.then((value) {
@@ -716,15 +717,15 @@ List<int> comment=[];
     final FirebaseMessaging _messaging = FirebaseMessaging.instance;
     late String currentToken;
     String userId = FirebaseAuth.instance.currentUser!.uid;
-      _messaging.getToken().then((value) {
-        print(value);
-        currentToken = value!;
-        emit(shoplayoutsendtokenrrorstates());
-        FirebaseFirestore.instance
-            .collection('user')
-            .doc('rEo0Gx3Be1TJPFLHFm2xsDPy3UT2')
-            .update({'token': value!, 'createdAt': DateTime.now()});
-      });
+    _messaging.getToken().then((value) {
+      print(value);
+      currentToken = value!;
+      emit(shoplayoutsendtokenrrorstates());
+      FirebaseFirestore.instance
+          .collection('user')
+          .doc('rEo0Gx3Be1TJPFLHFm2xsDPy3UT2')
+          .update({'token': value!, 'createdAt': DateTime.now()});
+    });
 
   }
 }

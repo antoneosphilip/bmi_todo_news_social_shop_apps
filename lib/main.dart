@@ -17,19 +17,22 @@ import 'package:shopapp/cubit/states.dart';
 import 'package:shopapp/layout/newsapp/cubit.dart';
 import 'package:shopapp/layout/newsapp/newsapp_layout.dart';
 import 'package:shopapp/layout/social-layout/social-layout.dart';
+import 'package:shopapp/layout/todo%20app/home_layout.dart';
 import 'package:shopapp/modules/paypal-screen/paypal-screen.dart';
 import 'package:shopapp/modules/shop_app/loginshopscreen/loginshop_screen.dart';
 import 'package:shopapp/modules/shop_app/on_boardingapp/on_boardingapp.dart';
 import 'package:shopapp/modules/shop_app/shop_layout/cubit/cubit-shoplayout.dart';
 import 'package:shopapp/modules/shop_app/shop_layout/shop_layout.dart';
+import 'package:shopapp/modules/social-app/feedsscreen/feeds-screen.dart';
 import 'package:shopapp/modules/social-app/social-logins-creen/social-login.dart';
 import 'package:shopapp/shared/styles/thems.dart';
 
-import '../../Network/login/login.dart';
-import '../../layout/social-layout/social-cubit/social-cubit.dart';
-import '../cart-screen/cart-screen.dart';
-import '../social-app/Registershopscreen/cubit-Register/cubit.dart';
-import '../social-app/social-logins-creen/cubit/cubit.dart';
+import 'Network/login/login.dart';
+import 'layout/social-layout/social-cubit/social-cubit.dart';
+import 'modules/cart-screen/cart-screen.dart';
+import 'modules/social-app/Home-screen/Home-screen.dart';
+import 'modules/social-app/Registershopscreen/cubit-Register/cubit.dart';
+import 'modules/social-app/social-logins-creen/cubit/cubit.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
@@ -93,19 +96,24 @@ void main()async {
     Diohelper.init();
     await shared.init();
 
-    bool board= shared.getdata(key: "isboard");
-    bool isDark=await shared.getdata(key:'light');
-    String islogin=shared.getdata(key: "token");
-    uId='';
-    uId=shared.getdata(key: 'uId');
+    dynamic board= shared.getdata(key: "isboard");
+    dynamic isDark=await shared.getdata(key:'light');
+    dynamic islogin=shared.getdata(key: "token");
+    //uId='';
+    if(uId!=''){
+      uId=shared.getdata(key: 'uId');
+
+    }
     // if(uId!=null){
     //   widget =sociallayoutscreen();
     // }else{
     //
     //   widget=socialapploginscreen();
     // }
+if(token!=null){
+  token=shared.getdata(key: 'token') ;
 
-    token=shared.getdata(key: 'token') ;
+}
     print(token);
     if(board!=null){
       if(islogin!=null) widget=shoplayout();
@@ -144,7 +152,7 @@ class MyApp extends StatelessWidget
       providers: [
         BlocProvider(create:(context)=>newcubit()..getdata()),
         BlocProvider(create: (context)=>Appcubit()..changecolormode(dark: isDark)),
-        BlocProvider(create: (context)=>shoplayoutcubit()..homedata()..categorydata()..faveoritedata()..profiledata()..search('s')),
+        BlocProvider(create: (context)=>shoplayoutcubit()..homedata()..categorydata()..faveoritedata()..profiledata()),
         BlocProvider(create: (context)=>sociallayoutcubit()..getuserdata()..getusers()..getuserposts()
 
 
@@ -164,7 +172,7 @@ class MyApp extends StatelessWidget
             theme:lighttheme ,
             darkTheme:darktheme ,
             themeMode: Appcubit.get(context).light? ThemeMode.dark : ThemeMode.light,
-            home: widget!,
+            home: widget !,
 
 
           );

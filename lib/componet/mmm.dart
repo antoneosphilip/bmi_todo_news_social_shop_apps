@@ -358,6 +358,7 @@ prefix,
       color: Colors.black,
     ),
     suffixIcon: IconButton(
+       color: Colors.black,
         onPressed:onpressed,
 
       icon: Icon(
@@ -365,18 +366,84 @@ sufficon
       ),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25.0),
+      borderRadius: BorderRadius.circular(10.0),
 
   borderSide: BorderSide(
-    color: Colors.deepOrange,
+    color: Colors.black,
     width: 2
   ),
 ),
 
     enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(
+        color: Colors.grey,
+        width: 2.0,
+      ),
+    ),
+
+  ),
+
+);
+Widget defaulttext2(
+    {
+      required TextEditingController controller,
+      required TextInputType type,
+      required IconData prefix,
+      bool isbass=false,
+      required String text,
+      VoidCallback? onpressed,
+      IconData? sufficon,
+      required Function validate,
+      Function? onsubmited,
+      Function? onchanged,
+
+    }
+    )=> TextFormField(
+  onFieldSubmitted: (value) {
+    onsubmited!(value);
+  },
+
+  showCursor: true,
+
+  controller: controller,
+  keyboardType: type,
+  validator: (value) {
+    validate;
+  },
+
+  obscureText: isbass,
+
+  decoration:  InputDecoration(
+
+    labelText: text,
+    labelStyle: TextStyle(color: Colors.black),
+    prefixIcon: Icon(
+
+      prefix,
+      color: Colors.black,
+    ),
+    suffixIcon: IconButton(
+      color: Colors.black,
+      onPressed:onpressed,
+
+      icon: Icon(
+          sufficon
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(25.0),
+
+      borderSide: BorderSide(
+          color: Colors.deepOrange,
+          width: 2
+      ),
+    ),
+
+    enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25.0),
       borderSide: BorderSide(
-        color: Colors.deepOrange,
+        color: Colors.grey,
         width: 2.0,
       ),
     ),

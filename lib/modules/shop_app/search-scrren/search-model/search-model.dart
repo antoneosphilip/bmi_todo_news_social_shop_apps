@@ -16,7 +16,6 @@ class Data {
   int? from;
   int? lastPage;
   String ?lastPageUrl;
-  Null? nextPageUrl;
   String ?path;
   int ?perPage;
   Null ?prevPageUrl;
@@ -37,7 +36,6 @@ class Data {
     from = json['from'];
     lastPage = json['last_page'];
     lastPageUrl = json['last_page_url'];
-    nextPageUrl = json['next_page_url'];
     path = json['path'];
     perPage = json['per_page'];
     prevPageUrl = json['prev_page_url'];

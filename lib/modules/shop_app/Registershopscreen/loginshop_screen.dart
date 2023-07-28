@@ -84,7 +84,7 @@ class Registerhopscreen extends StatelessWidget {
                             ),
                             SizedBox(height: 30 ,),
 
-                            defaulttext(
+                            defaulttext2(
                                 controller: namecontroller,
                                 type: TextInputType.name,
                                 prefix: Icons.person,
@@ -101,7 +101,7 @@ class Registerhopscreen extends StatelessWidget {
 
                             ),
                             SizedBox(height: 15,),
-                            defaulttext(
+                            defaulttext2(
                                 controller: phonecontroller,
                                 type: TextInputType.phone,
                                 prefix: Icons.phone,
@@ -118,7 +118,7 @@ class Registerhopscreen extends StatelessWidget {
 
                             ),
                             SizedBox(height: 15,),
-                            defaulttext(
+                            defaulttext2(
                                 controller: emailcontroller,
                                 type: TextInputType.emailAddress,
                                 prefix: Icons.email_outlined,
@@ -136,7 +136,7 @@ class Registerhopscreen extends StatelessWidget {
                             ),
                             SizedBox(height: 15,),
 
-                            defaulttext(
+                            defaulttext2(
                                 controller: passwordcontroller,
                                 onchanged: (value){
                                 },
@@ -176,8 +176,12 @@ class Registerhopscreen extends StatelessWidget {
                               condition: state is! shopregisterloadingstates,
                               builder: (context)=>Container(
                                 width: double.infinity,
-                                color: Colors.deepOrange,
+                                decoration: BoxDecoration(
+                                  color: Colors.deepOrange,
 
+
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                                 child: (
                                     MaterialButton(
                                       onPressed: (){
@@ -220,7 +224,9 @@ token=shopregistercubit.get(context).registermodel!.data!.token!;
                                     )
                                 ),
                               ),
-                              fallback:(context)=> Center(child: CircularProgressIndicator()),
+                              fallback:(context)=> Center(child: CircularProgressIndicator(
+                                color: Colors.deepOrange,
+                              )),
                             ),
                             SizedBox(height: 15,),
 

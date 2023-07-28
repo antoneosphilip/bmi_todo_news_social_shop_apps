@@ -9,6 +9,8 @@ class Diohelper{
  static init(){
    dio =Dio(
        BaseOptions(
+         //
+         //
          baseUrl: 'https://student.valuxapps.com/api/',
          receiveDataWhenStatusError: true,
 

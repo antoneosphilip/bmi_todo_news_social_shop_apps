@@ -155,7 +155,13 @@ class Registersocialscreen extends StatelessWidget {
                                 condition: state is! socialappregisterloadingstates,
                                 builder: (context)=>Container(
                                   width: double.infinity,
-                                  color: Colors.blue,
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+
+
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+
 
                                   child: (
                                       MaterialButton(

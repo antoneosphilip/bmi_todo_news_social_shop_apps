@@ -32,8 +32,6 @@ class socialapploginscreen extends StatelessWidget {
 
            if(state is socialapperrorstates){
          toast(text: state.error, choose: toastchoose.error);
-
-
            }
            if(state is socialappsucessstates){
 uId='';
@@ -130,7 +128,12 @@ uId='';
                               condition: state is! socialapploadingstates,
                               builder: (context)=>Container(
                                 width: double.infinity,
-                                color: Colors.blue,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+
+
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
 
                                 child: (
                                     MaterialButton(

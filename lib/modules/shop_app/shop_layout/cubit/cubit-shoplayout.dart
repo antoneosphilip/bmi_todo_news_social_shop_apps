@@ -32,6 +32,7 @@ import 'package:shopapp/modules/social-app/social-logins-creen/cubit/cubit.dart'
 import 'package:shopapp/shared/styles/styles.dart';
 
 import '../../../../componet/mmm.dart';
+import '../../settings-scrren/modelprofile.dart';
 
 
 
@@ -150,7 +151,7 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
 
     });
   }
-  shoploginmodel? modelprofile;
+  shopprofilemodel? modelprofile;
 
   void profiledata(){
     emit(profilemodelloading());
@@ -158,7 +159,10 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
       url: PROFILE,
       token: token,
     )!.then((value) {
-      modelprofile=shoploginmodel.fromjson(value?.data);
+        modelprofile=shopprofilemodel.fromjson(value?.data);
+
+
+
       print(modelprofile?.data!.image.toString());
       emit(profilemodelsucess());
     }).catchError((error){
@@ -184,9 +188,9 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
         }
 
     )!.then((value) {
-      modelprofile=shoploginmodel.fromjson(value?.data);
+      modelprofile=shopprofilemodel.fromjson(value?.data);
       print(modelprofile?.message.toString());
-      emit(updateprofilemodelsucess(modelprofile!));
+      emit(updateprofilemodelsucess(modelprofile as shoploginmodel));
 
 
     }).catchError((error){
@@ -202,26 +206,7 @@ class shoplayoutcubit extends Cubit<shoplayoutstates>{
     emit(changeiconfavorie());
 
   }
-  searchmodel? Smodel;
-  void search(String text){
-    emit(shopsearchloadingstateshop());
-    Diohelper.putdata(
-      url: SEARCH,
-      data: {
-        'text':text,
-      },
-      token: token,
-    )?.then((value) {
-      Smodel=searchmodel.fromjson(value?.data);
-      print(Smodel!.data!.data![0].id);
 
-      emit(shopsearchsucessstateshop());
-    }).catchError((erroe){
-      print(erroe);
-      emit(shopsearcherroestateshop());
-
-    });
-  }
 
   int? price;
   List<int> pricee=[];

@@ -79,7 +79,7 @@ class loginshopscreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyText1?.copyWith(color:Colors.grey),
                             ),
                             SizedBox(height: 30,),
-                            defaulttext(
+                            defaulttext2(
                                 controller: emailcontroller,
                                 type: TextInputType.emailAddress,
                                 prefix: Icons.email_outlined,
@@ -97,7 +97,7 @@ class loginshopscreen extends StatelessWidget {
                             ),
                             SizedBox(height: 15,),
 
-                            defaulttext(
+                            defaulttext2(
                                 controller: passwordcontroller,
                                 onchanged: (value){
                                 },
@@ -137,47 +137,59 @@ class loginshopscreen extends StatelessWidget {
                               condition: state is! shoploadingstates,
                               builder: (context)=>Container(
                                 width: double.infinity,
-                                color: Colors.deepOrange,
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepOrange,
 
-                                child: (
-                                    MaterialButton(
-                                      onPressed: (){
-                                        if(formkey.currentState!.validate()){
-                                          shopcubit.get(context).userlogin(
-                                              email:emailcontroller.text,
-                                              password: passwordcontroller.text
-                                          );
-                                          if(shopcubit.get(context).model?.statues==true){
-                                            Navigator.pushAndRemoveUntil(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:(context)=>shoplayout(),
-                                              ),
-                                                  (route) => false,
+
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+
+                                child: Container(
+
+                                  child: (
+                                      MaterialButton(
+
+                                        onPressed: (){
+                                          if(formkey.currentState!.validate()){
+                                            shopcubit.get(context).userlogin(
+                                                email:emailcontroller.text,
+                                                password: passwordcontroller.text
                                             );
+                                            if(shopcubit.get(context).model?.statues==true){
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+
+                                                  builder:(context)=>shoplayout(),
+                                                ),
+                                                    (route) => false,
+                                              );
 token=shopcubit.get(context).model!.data!.token!;
-                                          }else{
+                                            }else{
+
+                                            }
 
                                           }
+                                          else{
+                                            return null;
+                                          }
+                                        },
 
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-                                      child: Text(
-                                        "Login",
-                                        style: TextStyle(
-                                          color: Colors.white,
+                                        child: Text(
+                                          "Login",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+
                                         ),
-                                      ),
 
 
 
-                                    )
+                                      )
+                                  ),
                                 ),
                               ),
-                              fallback:(context)=> Center(child: CircularProgressIndicator()),
+                              fallback:(context)=> Center(child: CircularProgressIndicator(color: Colors.deepOrange,)),
                             ),
                             SizedBox(height: 15,),
 
@@ -188,7 +200,7 @@ token=shopcubit.get(context).model!.data!.token!;
                                 Text("don\'t have an account?"),
                                 TextButton(onPressed: (){
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Registerhopscreen()));
-                                }, child: Text("register".toUpperCase())),
+                                }, child: Text("register".toUpperCase(),style: TextStyle(color: Colors.deepOrange),),),
 
 
                               ],
